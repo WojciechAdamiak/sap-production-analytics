@@ -1,0 +1,5 @@
+# DBeaver metadata
+.dbeaver/
+*.log
+*.bak
+.DS_Store
