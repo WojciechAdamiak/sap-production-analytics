@@ -1,0 +1,4 @@
+material_id,part_number,description,material_group,unit_cost_usd,safety_stock_level
+MAT-991,PW-BLADE-01,Low Pressure Turbine Blade (Rzeszów Fleet),Turbines,1250.0,100
+MAT-992,PW-CASE-05,Titanium Fan Case Enclosure,Casings,8900.0,15
+MAT-993,PW-ROTR-09,High Pressure Compressor Shaft,Rotors,5400.0,25

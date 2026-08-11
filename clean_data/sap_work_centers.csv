@@ -1,0 +1,4 @@
+wc_id,wc_name,max_capacity_hours_weekly
+WC-CNC01,High-Precision CNC Milling Center,120
+WC-LAS02,Laser Quality Inspection & Certification,80
+WC-ASM03,Final Engine Assembly Line,160

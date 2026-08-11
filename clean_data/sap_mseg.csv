@@ -1,0 +1,4 @@
+material_id,warehouse_id,stock_qty_available,stock_qty_reserved
+MAT-991,WH-RZE01,85,40
+MAT-992,WH-RZE01,22,10
+MAT-993,WH-RZE02,40,15
