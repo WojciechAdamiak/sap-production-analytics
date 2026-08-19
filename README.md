@@ -119,7 +119,7 @@ This repository implements a production-ready engineering workflow based on five
   )
   ```
 
-  ### 7. Enterprise Dashboard Layout & UX Design (`dashboard/SAP_Production_Fulfillment_Dashboard.pbix`)![Enterprise Dashboard Interface Layout](images/page1.png)
+### 7. Enterprise Dashboard Layout & UX Design (`dashboard/SAP_Production_Fulfillment_Dashboard.pbix`)![Enterprise Dashboard Interface Layout](images/page1.png)
 
 - **Executive Key Performance Indicators**: Establishes a top-tier visual monitoring row anchoring the layout documented in `images/page1.png`. Senior management can evaluate cross-functional business health via three high-level KPI cards positioned at the absolute top of the viewport: `Total Scrap Loss Cost USD`, `Quality Rate %`, and `Delayed Orders Count`.
 - **Analytical Deep-Dive Visuals**: Deploys a mid-section analytical row utilizing clustered column charts to split financial losses and operational efficiency benchmarks side-by-side:
@@ -129,7 +129,13 @@ This repository implements a production-ready engineering workflow based on five
   `Order ID` | `Part Number` | `Quantity Planned` | `Quantity Produced` | `Quantity Scrapped` | `Plan Fulfillment %`
 - **Cross-Filtering Optimization**: Restricts cross-visual layout blinking by securing standard, performance-tuned interaction boundaries, holding comprehensive dashboard cross-filtering execution latency under 1.5 seconds.
 
-### 8. Git Repository & Environment Sanitation (`.gitignore`)
+### 8. Key Business Insights (`dashboard/SAP_Production_Fulfillment_Dashboard.pbix`)
+- **High-Value Financial Exposure**: The executive suite flags a total realized defect loss of **\$162.70k**, despite a strong global `Quality Rate %` of **96.34%**. This proves that even minor process deviations trigger significant financial bleeding due to high aviation component valuations.
+- **Material-Driven Waste Concentration**: Granular analysis via the `Total Scrap Loss Cost by Material Group (USD)` visual isolates **Casings (\$71,200)** and **Rotors (\$54,000)** as the primary cost drivers, overshadowing **Turbines (\$37,500)** in budget impact, despite Turbines having a higher physical scrap count.
+- **Work Center Quality Benchmarking**: Structural profiling via `Quality Rate (%) by Work Center` indicates balanced tolerances across the floor layout, where the *Final Engine Assembly Line* achieves the highest yield (**96.73%**), while the *Laser Quality Inspection* and *High-Precision CNC Milling Center* share the baseline floor constraints at **96.25%**.
+- **Fulfillment Bottlenecks & Active Backlogs**: The operational audit grid isolates **13 critical production orders underperforming past the 95% efficiency threshold**, including **5 critical orders recording 0% progress** due to late August scheduling holds, directly resulting in **9 active delayed orders**.
+
+### 9. Git Repository & Environment Sanitation (`.gitignore`)
 - Rules for blocking local database metadata (`.dbeaver/`), application logs (`*.log`), and system artifacts.
 
 
