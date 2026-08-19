@@ -118,8 +118,10 @@ This repository implements a production-ready engineering workflow based on five
       'sap_aufk'[Quantity Scrapped] * RELATED('sap_mara'[unit_cost_usd])
   )
 
-  ### 7. Git Repository & Environment Sanitation (`.gitignore`)
-- Rules for blocking local database metadata (`.dbeaver/`), application logs (`*.log`), and system artifacts.
+  
+- ### 7. Git Repository & Environment Sanitation (`.gitignore`)
+Rules for blocking local database metadata (`.dbeaver/`), application logs (`*.log`), and system artifacts.
+
   ```
 
 
