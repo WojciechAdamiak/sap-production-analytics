@@ -62,7 +62,29 @@ This repository implements a production-ready engineering workflow based on five
 - **Data Denormalization**: Transforms a highly normalized schema into a flattened Reporting View, reducing modelling workload directly inside Power BI or Tableau.
 - **Pre-computed KPIs**: Exposes standard operational metrics including `plan_fulfillment_percentage`, `days_delayed`, and `stock_health_status` compiled directly at the database engine level.
 
-### 5. Git Repository & Environment Sanitation (`.gitignore`)
+### 5. Power BI Modeling & Star Schema Architecture (`dashboard/SAP_Production_Fulfillment_Dashboard.pbix`)
+- **Star Schema Ingestion**: Establishes a highly efficient Star Schema directly inside Power BI by mapping data packages using their native SAP technical names. The core transaction ledger `sap_aufk` acts as the central Fact table, interconnected with `sap_mara` and `sap_work_centers` via solid **One-to-Many (`1` to `*`) relationships**.
+- **Dynamic DAX Calendar Dimension**: Implements a fully automated, contiguous `Dim_Calendar` table compiled at runtime. The table dynamically sets its analytical boundaries by screening historical data from `sap_aufk` using the following production-grade DAX pattern:
+  ```dax
+  Dim_Calendar = 
+  VAR MinDate = MIN('sap_aufk'[planned_start_date])
+  VAR MaxDate = MAX('sap_aufk'[actual_end_date])
+  RETURN
+  ADDCOLUMNS (
+      CALENDAR (MinDate, MaxDate),
+      "Year", YEAR([Date]),
+      "Month Num", MONTH([Date]),
+      "Month Name", FORMAT([Date], "MMMM"),
+      "Quarter", "Q" & FORMAT([Date], "Q"),
+      "Year Month", FORMAT([Date], "YYYY-MM"),
+      "Day of Week", WEEKDAY([Date], 2)
+  )
+  ```
+- **Relational Integrity**: Maintains unhindered data granularity across all attributes by keeping database keys and source columns accessible for rapid, unconstrained ad-hoc business reporting.
+
+### 6. Git Repository & Environment Sanitation (`.gitignore`)
 - Rules for blocking local database metadata (`.dbeaver/`), application logs (`*.log`), and system artifacts.
+
+
 
 
