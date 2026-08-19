@@ -44,19 +44,25 @@ The project consists of 4 core tables located in the public schema:
 ## 📖 Playbook: SAP-to-PostgreSQL Analytics Pipeline
 *Infrastructure, Performance Optimization, and BI Integration Guide*
 
-This repository implements a production-ready engineering workflow based on three core architectural principles:
+This repository implements a production-ready engineering workflow based on five core architectural principles:
 
-### 1. Advanced Inventory Alerting (`queries/06_inventory_alerts.sql`)
+### 1. Data Pipeline & Orchestration (`generate_clean_data.py`)
+- **Automated ETL Ingestion**: Implements a lightweight automated data transformation engine using Python and `pandas` to compile high-fidelity test arrays into valid, standard `.csv` objects stored inside the `clean_data/` directory.
+- **Data Integrity Handling**: The script dynamically checks for target subfolders, processes absolute and floating datatypes, and secures baseline relational keys by explicitly handling missing values (e.g., maintaining `None` configurations for active, open production orders to eliminate historical date clipping before pipeline deployment).
+
+### 2. Advanced Inventory Alerting (`queries/06_inventory_alerts.sql`)
 - **Deficit Engine**: Automatically screens current stock (`sap_mseg`) against engineering thresholds (`sap_mara`).
 - **Mathematical Resilience**: Implements the `NULLIF(safety_stock_level, 0)` pattern to eliminate any risk of critical runtime division-by-zero errors.
 
-### 2. High-Performance Indexing (`schema/07_performance_indexes.sql`)
+### 3. High-Performance Indexing (`schema/07_performance_indexes.sql`)
 - **Relational Speedups**: Manually indexes foreign key attributes (`material_id`, `wc_id`) in high-frequency transaction tables to reduce `JOIN` complexity from sequential scans to rapid index scans.
 - **Time-Series Optimization**: Applies B-Tree indexing on operational timestamps (`planned_start_date`, `actual_end_date`) to accelerate business filtering and date-truncation functions.
 
-### 3. Business Intelligence Semantic Layer (`views/05_production_performance_dashboard.sql`)
+### 4. Business Intelligence Semantic Layer (`views/05_production_performance_dashboard.sql`)
 - **Data Denormalization**: Transforms a highly normalized schema into a flattened Reporting View, reducing modelling workload directly inside Power BI or Tableau.
 - **Pre-computed KPIs**: Exposes standard operational metrics including `plan_fulfillment_percentage`, `days_delayed`, and `stock_health_status` compiled directly at the database engine level.
 
-### 4. Git Repository & Environment Sanitation (`.gitignore`)
+### 5. Git Repository & Environment Sanitation (`.gitignore`)
 - Rules for blocking local database metadata (`.dbeaver/`), application logs (`*.log`), and system artifacts.
+
+
