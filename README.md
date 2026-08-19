@@ -38,6 +38,7 @@ The project consists of 4 core tables located in the public schema:
 ├── .gitignore                              # Standard protection against environment leaks (.dbeaver/, *.log)
 ├── generate_clean_data.py                  # Automated Python ETL script compiling data into clean_data/
 └── README.md                               # Project documentation
+└── TRAINING_GUIDE.md                       # Bilingual onboarding manual and team training syllabus
 
 ```
 
@@ -138,6 +139,8 @@ This repository implements a production-ready engineering workflow based on five
 ### 9. Git Repository & Environment Sanitation (`.gitignore`)
 - Rules for blocking local database metadata (`.dbeaver/`), application logs (`*.log`), and system artifacts.
 
+## 🏫 Knowledge Transfer & Mentorship
+This repository features a comprehensive, industry-grade onboarding framework and training syllabus designed for scaling analytics teams. Complete technical details and dual-language operating procedures can be accessed directly in the [TRAINING_GUIDE.md](TRAINING_GUIDE.md) playbook.
 
 
 
