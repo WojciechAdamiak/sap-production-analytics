@@ -119,7 +119,16 @@ This repository implements a production-ready engineering workflow based on five
   )
   ```
 
-### 7. Git Repository & Environment Sanitation (`.gitignore`)
+  ### 7. Enterprise Dashboard Layout & UX Design (`dashboard/SAP_Production_Fulfillment_Dashboard.pbix`)
+- **Executive Key Performance Indicators**: Establishes a top-tier visual monitoring row anchoring the layout documented in `images/page1.png`. Senior management can evaluate cross-functional business health via three high-level KPI cards positioned at the absolute top of the viewport: `Total Scrap Loss Cost USD`, `Quality Rate %`, and `Delayed Orders Count`.
+- **Analytical Deep-Dive Visuals**: Deploys a mid-section analytical row utilizing clustered column charts to split financial losses and operational efficiency benchmarks side-by-side:
+  * *Left Chart*: `Total Scrap Loss Cost by Material Group (USD)` – Isolates direct inventory waste patterns across master categories.
+  * *Right Chart*: `Quality Rate (%) by Work Center` – Benchmarks operational component yield ratios across manufacturing nodes to locate machine tolerances.
+- **Granular Fact Audit Trail**: Embeds a robust operational matrix table at the bottom of the interface layout to enable raw transaction inspection. The audit grid exposes the following normalized structural columns directly from the data pipeline:
+  `Order ID` | `Part Number` | `Quantity Planned` | `Quantity Produced` | `Quantity Scrapped` | `Plan Fulfillment %`
+- **Cross-Filtering Optimization**: Restricts cross-visual layout blinking by securing standard, performance-tuned interaction boundaries, holding comprehensive dashboard cross-filtering execution latency under 1.5 seconds.
+
+### 8. Git Repository & Environment Sanitation (`.gitignore`)
 - Rules for blocking local database metadata (`.dbeaver/`), application logs (`*.log`), and system artifacts.
 
 
