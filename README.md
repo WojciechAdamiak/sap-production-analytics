@@ -82,8 +82,46 @@ This repository implements a production-ready engineering workflow based on five
   ```
 - **Relational Integrity**: Maintains unhindered data granularity across all attributes by keeping database keys and source columns accessible for rapid, unconstrained ad-hoc business reporting.
 
-### 6. Git Repository & Environment Sanitation (`.gitignore`)
+### 6. Advanced DAX Measures & Business Logic (`dashboard/SAP_Production_Fulfillment_Dashboard.pbix`)
+- **Centralized Analytical Layer**: Aggregates all high-level manufacturing logic inside a dedicated virtual container (`_Measures`) to decouple explicit calculation layers from baseline relational tables.
+- **Delivery Slippage Diagnostics**: Tracks delivery timeline performance by isolating and counting closed production runs that breached their engineering deadlines via context transition:
+  ```dax
+  Delayed Orders Count = 
+  CALCULATE(
+      COUNT('sap_aufk'[Order ID]),
+      'sap_aufk'[actual_end_date] > 'sap_aufk'[planned_end_date]
+  )
+  ```
+- **Operational Target Tracking**: Monitors shop-floor volume performance against engineering plans, using defensive division routines scaled to percentage representation:
+  ```dax
+  Plan Fulfillment % = 
+  DIVIDE(
+      SUM('sap_aufk'[Quantity Produced]),
+      SUM('sap_aufk'[Quantity Planned]),
+      0
+  ) * 100
+  ```
+- **Manufacturing Yield Optimization**: Establishes material efficiency KPIs by isolating conforming parts against total processed volumes via local data variables (`VAR`):
+  ```dax
+  Quality Rate % = 
+  VAR TotalGood = SUM('sap_aufk'[Quantity Produced])
+  VAR TotalScrap = SUM('sap_aufk'[Quantity Scrapped])
+  VAR TotalProcessed = TotalGood + TotalScrap
+  RETURN
+      DIVIDE(TotalGood, TotalProcessed, 0)
+  ```
+- **Financial Waste Quantification**: Runs iterative row-by-row context assessment across operational scrap sheets, extracting cross-table master part valuations via `RELATED` to compile hard losses in USD:
+  ```dax
+  Total Scrap Loss Cost USD = 
+  SUMX(
+      'sap_aufk',
+      'sap_aufk'[Quantity Scrapped] * RELATED('sap_mara'[unit_cost_usd])
+  )
+
+  ### 7. Git Repository & Environment Sanitation (`.gitignore`)
 - Rules for blocking local database metadata (`.dbeaver/`), application logs (`*.log`), and system artifacts.
+  ```
+
 
 
 
