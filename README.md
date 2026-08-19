@@ -14,21 +14,31 @@ The project consists of 4 core tables located in the public schema:
 - **sap_mseg (Transactional Data)**: Current inventory levels and material reservations across warehouses.
 
 ## 📂 Project Structure
-```text
-sap-production-analytics/
-├── data/
-│   └── 02_seed_data.sql                        # Seeding master data and 25 operational production orders
-├── queries/
-│   ├── 03_financial_analysis.sql               # Evaluation of scrap costs and financial losses
-│   ├── 04_kpi_metrics.sql                      # Machine efficiency and operational KPIs
-│   └── 06_inventory_alerts.sql                 # Automated material shortage detection script
-├── schema/
-│   ├── 01_init_tables.sql                      # Table DDL definitions and relationships
-│   └── 07_performance_indexes.sql              # Performance tuning indexes for foreign keys and dates
-├── views/
+```sap-production-analytics/
+├── clean_data/                             # Auto-generated CSV datasets from Python ETL process
+│   ├── sap_aufk.csv                        # Production orders factual records (Fact table)
+│   ├── sap_mara.csv                        # Material and parts master records (Dimension table)
+│   ├── sap_mseg.csv                        # Current inventory balances and reservations (Transactional data)
+│   └── sap_work_centers.csv                # Work center profiles and production capacities (Dimension table)
+├── dashboard/                              # Business Intelligence presentation layer
+│   └── SAP_Production_Fulfillment_Dashboard.pbix # Production Power BI report file with compiled Star Schema and DAX
+├── data/                                   # Database ingestion scripts
+│   └── 02_seed_data.sql                    # Seeding master data and 25 operational production orders
+├── images/                                 # Documentation assets and visual anchors
+│   └── page1.png                           # High-resolution screenshot of the primary executive dashboard view
+├── queries/                                # Analytical SQL query engine
+│   ├── 03_financial_analysis.sql           # Evaluation of scrap costs and financial losses
+│   ├── 04_kpi_metrics.sql                  # Machine efficiency and operational KPIs
+│   └── 06_inventory_alerts.sql             # Automated material shortage detection script
+├── schema/                                 # Database architectural blueprints
+│   ├── 01_init_tables.sql                  # Database DDL defining structure, primary keys, and foreign keys
+│   └── 07_performance_indexes.sql          # Tuning scripts establishing B-Tree indexes for joints and timelines
+├── views/                                  # Database presentation layer
 │   └── 05_production_performance_dashboard.sql # Global reporting view optimized for Power BI & Tableau
-├── .gitignore                                  # Standard protection against environment leaks (.dbeaver/, *.log)
-└── README.md                                   # Project documentation
+├── .gitignore                              # Standard protection against environment leaks (.dbeaver/, *.log)
+├── generate_clean_data.py                  # Automated Python ETL script compiling data into clean_data/
+└── README.md                               # Project documentation
+
 ```
 
 ## 📖 Playbook: SAP-to-PostgreSQL Analytics Pipeline
