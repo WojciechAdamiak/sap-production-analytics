@@ -1,5 +1,10 @@
 # SAP Production Analytics Platform (PostgreSQL)
 
+![PostgreSQL](https://shields.io) ![Python](https://shields.io) ![Power_BI](https://shields.io) ![Pandas](https://shields.io)
+
+## Executive Dashboard Preview
+![Executive Dashboard View](images/page1.png)
+
 ## 📌 Project Overview
 This project delivers a relational database system modeled after SAP ERP structures (MARA, AUFK, MSEG) for an aviation manufacturing facility. It focuses on analyzing production fulfillment, quality tracking (scrap rates), and financial losses due to manufacturing defects.
 
