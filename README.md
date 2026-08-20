@@ -1,6 +1,6 @@
 # SAP Production Analytics Platform (PostgreSQL)
 
-![PostgreSQL](https://shields.io) ![Python](https://shields.io) ![Power_BI](https://shields.io) ![Pandas](https://shields.io)
+![PostgreSQL](https://shields.io) ![Python](https://shields.io) ![Power BI](https://shields.io) ![Pandas](https://shields.io)
 
 ## Executive Dashboard Preview
 ![Executive Dashboard View](images/page1.png)
